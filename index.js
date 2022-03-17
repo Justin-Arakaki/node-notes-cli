@@ -10,8 +10,22 @@ console.log('json: ', json);
 const command = process.argv[2];
 console.log('command: ', command);
 
-const id = process.argv[3];
+let id = null;
 console.log('id: ', id);
 
-const text = process.argv[4];
+let text = null;
 console.log('text: ', text);
+
+function create() {
+  text = process.argv[3]
+  json.notes[json.nextId.toString()] = text
+  json.nextId++;
+}
+
+switch (command) {
+  case 'create':
+    create();
+    break;
+  }
+
+  console.log('value of json:',json);
