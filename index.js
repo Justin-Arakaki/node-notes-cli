@@ -7,16 +7,11 @@
 const json = require('./data.json');
 const fs = require('fs');
 
-console.log('json: ', json);
-
 const command = process.argv[2];
-console.log('command: ', command);
 
 let id = null;
-console.log('id: ', id);
 
 let text = null;
-console.log('text: ', text);
 
 
 switch (command) {
@@ -31,8 +26,12 @@ switch (command) {
   case 'read':
     read();
     break;
+  case 'delete':
+    remove();
+    write();
+    break;
   default:
-    console.log('I dunno what you\'re talking about');
+    console.log('wrong command');
 }
 
 function create() {
@@ -49,12 +48,13 @@ function update() {
 
 function read() {
   for (const x in json.notes) {
-    console.log(x + ': ' + json.notes[x]);
+    console.log(`${x}: ${json.notes[x]}`);
   }
 }
 
-function delete() {
-  // STUFF
+function remove() {
+  id = process.argv[3];
+  delete json.notes[id];
 }
 
 function write() {
